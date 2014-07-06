@@ -7,8 +7,6 @@ var d           = new Date(),
     secondClose = null,
     openTimes   = [],
 
-    defaultView = '<div><h1>sorry kid care is closed.</h1></div>',
-
     days      = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
 
@@ -16,27 +14,34 @@ var d           = new Date(),
 function everyMinute() {
 // runs every 60 sec and runs on init.
   var hour          = d.getHours(),
-      day           = d.getDay(),
       nextHour      = hour + 1,
+      day           = d.getDay(),
+      nextDay       = day + 1,
       currentMinute = d.getMinutes(),
 
       body          = $('body');
 
+  console.log(hour + ':' + currentMinute, nextHour);
 
-  console.log(hour + ':' + currentMinute, nextHour)
+  var defaultView =
+      '<div>' +
+      '<h1>sorry kid care is closed.</h1>' +
+      '</div>';
 
   // Sunday
   if( day === 0 ) {
-    firstOpen = 1,
+    firstOpen  = 1,
     firstClose = 3,
-    openTimes = [firstOpen + '-' + firstClose];
-    day = "Sunday";
+    openTimes  = [firstOpen + '-' + firstClose],
+    day        = "Sunday",
+    nextDay    = "Monday";
 
     if( hour >= 13 && hour < 15 ) {
-      body.css('background', 'green');
       console.log('it is open');
     } else { body.html(defaultView) }
-  };
+
+    console.log(nextDay)
+  }
 
   // monday through thursday
   if( day === 1 || day === 2 || day === 3 || day === 4 ) {
@@ -48,7 +53,6 @@ function everyMinute() {
     day = "M-Th";
 
     if( hour >= 8 && hour < 13 || hour >= 16 && hour < 21 ) {
-      body.css('background', 'green');
       console.log('it is open');
     }
   }
@@ -80,7 +84,6 @@ function everyMinute() {
     console.log('It is Saturday and Kid Care opens at ' + firstOpen);
 
     if( hour >= 8 && hour < 13 || hour >= 16 && hour < 19 ) {
-      body.css('background', 'green');
       console.log('it is open');
     }
   }
@@ -88,6 +91,10 @@ function everyMinute() {
   $('#js-opentimes').html(openTimes);
   $('#js-timeleft').html(60 - currentMinute)
   $('#js-day').html(day);
+
+  if( secondOpen === null ) {
+    secondOpen = nextDay;
+  }
 
   console.log('It is ' + day + '. Kid Care is open from ' + firstOpen + '-' + firstClose + ' and ' + secondOpen + '-' + secondClose);
 };
