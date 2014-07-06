@@ -7,7 +7,11 @@ var d           = new Date(),
     secondClose = null,
     openTimes   = [],
 
-    defaultView = '<div><h1>sorry kid care is closed.</h1></div>'
+    defaultView = '<div><h1>sorry kid care is closed.</h1></div>',
+
+    days      = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+
 
 function everyMinute() {
 // runs every 60 sec and runs on init.
@@ -26,6 +30,7 @@ function everyMinute() {
     firstOpen = 1,
     firstClose = 3,
     openTimes = [firstOpen + '-' + firstClose];
+    day = "Sunday";
 
     if( hour >= 13 && hour < 15 ) {
       body.css('background', 'green');
@@ -39,7 +44,8 @@ function everyMinute() {
     firstClose = 1,
     secondOpen = 4,
     secondClose = 9,
-    openTimes = [firstOpen + '-' + firstClose, secondOpen + '-' + secondClose];
+    openTimes = [firstOpen + '-' + firstClose, secondOpen + '-' + secondClose],
+    day = "M-Th";
 
     if( hour >= 8 && hour < 13 || hour >= 16 && hour < 21 ) {
       body.css('background', 'green');
@@ -53,7 +59,8 @@ function everyMinute() {
     firstClose = 1,
     secondOpen = 4,
     secondClose = 7,
-    openTimes = [firstOpen + '-' + firstClose, secondOpen + '-' + secondClose];
+    openTimes = [firstOpen + '-' + firstClose, secondOpen + '-' + secondClose],
+    day = "Friday";
 
     console.log('It is Friday and Kid Care opens at ' + firstOpen);
 
@@ -67,7 +74,8 @@ function everyMinute() {
   if( day === 6 ) {
     firstOpen = 9,
     firstClose = 3,
-    openTimes = [firstOpen + '-' + firstClose];
+    openTimes = [firstOpen + '-' + firstClose],
+    day = "Saturday";
 
     console.log('It is Saturday and Kid Care opens at ' + firstOpen);
 
@@ -79,6 +87,7 @@ function everyMinute() {
 
   $('#js-opentimes').html(openTimes);
   $('#js-timeleft').html(60 - currentMinute)
+  $('#js-day').html(day);
 
   console.log('It is ' + day + '. Kid Care is open from ' + firstOpen + '-' + firstClose + ' and ' + secondOpen + '-' + secondClose);
 };
