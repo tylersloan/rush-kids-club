@@ -62,8 +62,6 @@ function app() {
       m       = today.getMinutes(),
       s       = today.getSeconds(),
 
-      kcIsOpen  = $('.wrapper').hasClass('kc-is-open'),
-
       m = checkTime(m),
       s = checkTime(s);
 
@@ -120,30 +118,38 @@ function app() {
   /* Functions that create the page based on being open or closed */
   function closeIt () {
       $('.kc-is-open').hide();
-      $('.kc-is-closed').show()
+      $('.kc-is-closed').show();
 
       if(h < so) {
-        $('#js-next-open').html("at " + convertTime(so));
+        $('#js-next-open').html('at ' + convertTime(so));
       } else {
         $('#js-next-open').html(' tomorrow.');
       }
   }
 
+  function tilClose(x) {
+    var minsTilClose = (x - h)*60;
+    var hrsTilClose  = ((minsTilClose - m)/60).toFixed(2);
+
+    $('#js-timeleft').html( hrsTilClose );
+  }
+
   function openIt () {
       $('.kc-is-open').show();
-      $('.kc-is-closed').hide()
+      $('.kc-is-closed').hide();
 
       $('#js-first-open').html(convertTime(fo));
       $('#js-first-close').html(convertTime(fc));
+
+      if(h < fc) {
+        tilClose(fc);
+      }
 
       if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
         $('#js-second-open').html(convertTime(so));
         $('#js-second-close').html(convertTime(sc));
 
-        var minsTilClose = (sc - h)*60;
-        var hrsTilClose  = ((minsTilClose - m)/60).toFixed(2)
-
-        $('#js-timeleft').html( hrsTilClose )
+        tilClose(sc);
       }
   }
 
