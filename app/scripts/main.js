@@ -56,7 +56,9 @@ function app() {
 
   function convertTime(i) {
     if(i>12) {
-      i = i - 12;
+      i = i - 12 + 'pm';
+    } else {
+      i = i + 'am';
     }
     return i;
   }
@@ -80,17 +82,21 @@ function app() {
   if (day === 5) { day = friday;    }
   if (day === 6) { day = saturday;  }
 
+  // today.getDay() + 1
+
   $('#js-day').html(day.dayOfWeek);
 
-  $('#js-first-open').html(convertTime(day.firstOpen));
-  $('#js-first-close').html(convertTime(day.firstClose));
+  var fo = convertTime(day.firstOpen);
+  var fc = convertTime(day.firstClose);
+  var so = convertTime(day.secondOpen);
+  var sc = convertTime(day.secondClose);
 
-  // $('#js-first-open').html(day.firstOpen);
-  // $('#js-first-close').html(day.firstClose);
+  $('#js-first-open').html(fo);
+  $('#js-first-close').html(fc);
 
   if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
-    $('#js-second-open').html(convertTime(day.secondOpen));
-    $('#js-second-close').html(convertTime(day.secondClose));
+    $('#js-second-open').html(so);
+    $('#js-second-close').html(sc);
   }
 
   /*
