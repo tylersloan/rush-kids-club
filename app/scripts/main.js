@@ -25,7 +25,7 @@ Schedule.prototype = scheduleProto;
 var sunday     =  new Schedule('Sunday',    '13','16');
 var monday     =  new Schedule('Monday',    '8','13','16','21');
 var tuesday    =  new Schedule('Tuesday',   '8','13','16','21');
-var wednesday  =  new Schedule('Wednesday', '8','13','15','21');
+var wednesday  =  new Schedule('Wednesday', '8','13','16','21');
 var thursday   =  new Schedule('Thursday',  '8','13','16','21');
 var friday     =  new Schedule('Friday',    '8','13','16','21');
 var saturday   =  new Schedule('Saturday',  '9','15');
@@ -145,7 +145,10 @@ function app() {
         tilClose(fc);
       }
 
-      if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
+      if(convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') {
+
+        // $('.js-schedule').append('<li>Afternoon: <span id="js-second-open">' + convertTime(so) + '</span> - <span id="js-second-close">' + convertTime(sc) + '</span></li>')
+
         $('#js-second-open').html(convertTime(so));
         $('#js-second-close').html(convertTime(sc));
 
@@ -154,10 +157,10 @@ function app() {
   }
 
   /* 9. This is important. if() to check time open or close as appropriate */
-  if (h < fo || h >= fc && h < so || h > sc) {
-    closeIt();
-  } else {
+  if ( (h >= fo && h < fc) || (h >= so & h < sc) ) {
     openIt();
+  } else {
+    closeIt();
   }
 
   /* 10. Tell the user what time it is */
