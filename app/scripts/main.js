@@ -1,6 +1,6 @@
 'use strict';
 
-var d           = new Date(),
+var today       = new Date(),
     days        = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"],
     daysLength  = days.length,
     defaultView = '<div><h1>sorry kid care is closed.</h1></div>';
@@ -34,14 +34,13 @@ var saturday   =  new Schedule("Saturday","1pm","4pm");
 
 function everyMinute() {
 // runs every 60 sec and runs on init.
-  var hour           = d.getHours(),
-      nextHour       = hour + 1,
-      day            = d.getDay(),
-      nextDay        = day + 1,
-      currentMinute  = d.getMinutes(),
-      minTilNextHour = 60 - currentMinute,
-
-      body          = $('body');
+  var today   = new Date(),
+      h       = today.getHours(),
+      day     = today.getDay(),
+      m       = today.getMinutes(),
+      s       = today.getSeconds(),
+      m       = checkTime(m),
+      s       = checkTime(s);
 
   if (day === 0) { day = sunday    }
   if (day === 1) { day = monday    }
@@ -50,8 +49,6 @@ function everyMinute() {
   if (day === 4) { day = thursday  }
   if (day === 5) { day = friday    }
   if (day === 6) { day = saturday  }
-
-  console.log(hour + ':' + currentMinute, minTilNextHour + " minutes until " + (nextHour - 12) + " oclock.");
 
   $('#js-day').html(day.dayOfWeek);
 
@@ -63,8 +60,21 @@ function everyMinute() {
     $('#js-second-close').html(day.secondClose);
   }
 
-  // $('#js-timeleft').html(minTilNextHour)
+  var t = setTimeout( function () {
+    everyMinute()
+  }, 500);
+
+  function checkTime(i) {
+    if (i<10) {
+      i = "0" + i
+    };  // add zero in front of numbers < 10
+    return i;
+  }
+
+  document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+
+
 };
 
 everyMinute();
-setInterval(everyMinute, 60*1000);
+// setInterval(everyMinute, 5*1000);
