@@ -139,6 +139,11 @@ function app() {
       if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
         $('#js-second-open').html(convertTime(so));
         $('#js-second-close').html(convertTime(sc));
+
+        var minsTilClose = (sc - h)*60;
+        var hrsTilClose  = (minsTilClose - m)/60
+
+        $('#js-timeleft').html( hrsTilClose.toFixed(2) )
       }
   }
 
