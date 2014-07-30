@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * The Schedule Object
+ * The Schedule Object–
  * It's a way to add a schedule to each day of the week.
  */
 var scheduleProto = {
@@ -22,31 +22,22 @@ function Schedule (dayOfWeek, firstOpen, firstClose, secondOpen, secondClose) {
 
 Schedule.prototype = scheduleProto;
 
-var sunday     =  new Schedule('Sunday','1pm','4pm');
-var monday     =  new Schedule('Monday','8am','1pm','3pm','9pm');
-var tuesday    =  new Schedule('Tuesday','8am','1pm','3pm','9pm');
-var wednesday  =  new Schedule('Wednesday','8','13','16','21');
-// var wednesday  =  new Schedule('Wednesday','8am','1pm','3pm','9pm');
-var thursday   =  new Schedule('Thursday','8am','1pm','3pm','9pm');
-var friday     =  new Schedule('Friday','9am','3pm');
-var saturday   =  new Schedule('Saturday','1pm','4pm');
+var sunday     =  new Schedule('Sunday',    '13','16');
+var monday     =  new Schedule('Monday',    '8','13','16','21');
+var tuesday    =  new Schedule('Tuesday',   '8','13','16','21');
+var wednesday  =  new Schedule('Wednesday', '8','13','16','21');
+var thursday   =  new Schedule('Thursday',  '8','13','16','21');
+var friday     =  new Schedule('Friday',    '8','13','16','21');
+var saturday   =  new Schedule('Saturday',  '9','15');
 
-/*
- * app() is, you know, the whole thing.
- * First I set vars for things that make up the time,
- * then I turn the day returned into a word, like Monday, etc.
- * Then I add data to the HTML.
- */
-
+/* app() is, you know, the whole thing. */
 function app() {
-  /*
-   * Hats of to, ehem, W3C Docs for this clock functionality
-   */
-
+  /* 1. Make sure the app is running and re-running */
   setTimeout( function () {
     app();
   }, 500);
 
+  /* 2. Funciton to add a 0 before the minutes or seconds digit if it's < 10 */
   function checkTime(i) {
     if (i<10) {
       i = '0' + i;
@@ -54,6 +45,7 @@ function app() {
     return i;
   }
 
+  /* 3. Function to convert JS time into 12-hour time, then append 'am' or 'pm' */
   function convertTime(i) {
     if(i>12) {
       i = i - 12 + 'pm';
@@ -63,17 +55,20 @@ function app() {
     return i;
   }
 
+  /* 4. Set variables for things that make up the time, plus some others */
   var today   = new Date(),
       h       = today.getHours(),
       day     = today.getDay(),
       m       = today.getMinutes(),
       s       = today.getSeconds(),
 
-      defaultView = '<h3>Sorry, Kid Care is closed.</h3>';
+      defaultView = '<h3>Sorry, Kid Care is closed.</h3>',
+      kcIsOpen  = $('body').hasClass('kc-is-open'),
 
-  var m = checkTime(m),
+      m = checkTime(m),
       s = checkTime(s);
 
+  /* 5. I turn the day returned into a word, like Monday, etc. */
   if (day === 0) { day = sunday;    }
   if (day === 1) { day = monday;    }
   if (day === 2) { day = tuesday;   }
@@ -82,52 +77,45 @@ function app() {
   if (day === 5) { day = friday;    }
   if (day === 6) { day = saturday;  }
 
-  // today.getDay() + 1
-
+  /* 6. Tell the user what day it is */
   $('#js-day').html(day.dayOfWeek);
 
-  var fo = convertTime(day.firstOpen);
-  var fc = convertTime(day.firstClose);
-  var so = convertTime(day.secondOpen);
-  var sc = convertTime(day.secondClose);
+  /* 7. If KC is closed now, tell the user when KC will open again */
+  // today.getDay() + 1
+  // if(kcIsOpen == false) {
+  //   // get next open time.
+  //   var day = today.getDay() + 1;
+  //   console.log(day.firstOpen)
+  // }
 
-  $('#js-first-open').html(fo);
-  $('#js-first-close').html(fc);
+  /* Set variables to for easier writing */
+  var fo = day.firstOpen;
+  var fc = day.firstClose;
+  var so = day.secondOpen;
+  var sc = day.secondClose;
+
+  /* 8. Print open time(s) and close time(s) in the browser */
+  $('#js-first-open').html(convertTime(fo));
+  $('#js-first-close').html(convertTime(fc));
 
   if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
-    $('#js-second-open').html(so);
-    $('#js-second-close').html(sc);
+    $('#js-second-open').html(convertTime(so));
+    $('#js-second-close').html(convertTime(sc));
   }
 
-  /*
-   * The following checks what day it is and changes layout accordingly
-   */
-
+  /* Function to put up the "We're Closed!" sign up */
   function closeIt () {
     $('body').removeClass('kc-is-open')
     $('.wrapper').html(defaultView);
   }
 
-  if(day === monday || tuesday || wednesday || thursday || friday) {
-    if (h < 8 || h > 12 && h < 15 || h > 20) {
-      closeIt
-    }
+  /* 9. This is important. if() to check time and run closeIt() if necessary */
+  if (h < fo || h >= fc && h < so || h > sc) {
+    closeIt()
   }
 
-  if(day === saturday) {
-    if (h < 9 && h > 14) {
-      closeIt
-    }
-  }
-
-  if(day === sunday) {
-    if (h < 13 && h > 15) {
-      closeIt
-    }
-  }
-
-  $('#clock').html(h+':'+m+':'+s);
-  
+  /* 10. Tell the user what time it is */
+  $('#clock').html(h+':'+m);
 }
 
 app();
