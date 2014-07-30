@@ -68,25 +68,40 @@ function app() {
       m = checkTime(m),
       s = checkTime(s);
 
-  /* 5. I turn the day returned into a word, like Monday, etc. */
-  if (day === 0) { day = sunday;    }
-  if (day === 1) { day = monday;    }
-  if (day === 2) { day = tuesday;   }
-  if (day === 3) { day = wednesday; }
-  if (day === 4) { day = thursday;  }
-  if (day === 5) { day = friday;    }
-  if (day === 6) { day = saturday;  }
+      // var tomorrow = day + 1;
+      // console.log(day.dayOfWeek, tomorrow);
 
-  /* 6. Tell the user what day it is */
-  $('#js-day').html(day.dayOfWeek);
 
-  /* 7. If KC is closed now, tell the user when KC will open again */
+  /* 5. If KC is closed now, tell the user when KC will open again. Do this before #6 so we have acces to JS generated day digit still */
   // today.getDay() + 1
-  // if(kcIsOpen == false) {
-  //   // get next open time.
-  //   var day = today.getDay() + 1;
-  //   console.log(day.firstOpen)
-  // }
+  if(kcIsOpen == false) {
+    // get next open time.
+    var tomorrow = day + 1;
+
+    if (day === 0) { tomorrow = monday;    }
+    if (day === 1) { tomorrow = tuesday;   }
+    if (day === 2) { tomorrow = wednesday; }
+    if (day === 3) { tomorrow = thursday;  }
+    if (day === 4) { tomorrow = friday;    }
+    if (day === 5) { tomorrow = saturday;  }
+    if (day === 6) { tomorrow = sunday;    }
+
+
+  }
+
+  /* 6. I turn the day returned into a word, like Monday, etc. */
+  var convertDay = (function () {
+    if (day === 0) { day = sunday;    }
+    if (day === 1) { day = monday;    }
+    if (day === 2) { day = tuesday;   }
+    if (day === 3) { day = wednesday; }
+    if (day === 4) { day = thursday;  }
+    if (day === 5) { day = friday;    }
+    if (day === 6) { day = saturday;  }
+  })();
+
+  /* 7. Tell the user what day it is */
+  $('#js-day').html(day.dayOfWeek);
 
   /* Set variables to for easier writing */
   var fo = day.firstOpen;
@@ -115,7 +130,7 @@ function app() {
   }
 
   /* 10. Tell the user what time it is */
-  $('#clock').html(h+':'+m);
+  $('#clock').html(h + ':' + m);
 }
 
 app();
