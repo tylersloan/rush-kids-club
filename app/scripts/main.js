@@ -141,9 +141,9 @@ function app() {
         $('#js-second-close').html(convertTime(sc));
 
         var minsTilClose = (sc - h)*60;
-        var hrsTilClose  = (minsTilClose - m)/60
+        var hrsTilClose  = ((minsTilClose - m)/60).toFixed(2)
 
-        $('#js-timeleft').html( hrsTilClose.toFixed(2) )
+        $('#js-timeleft').html( hrsTilClose )
       }
   }
 
