@@ -11,36 +11,37 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-<body>
-
-<div class="hero-unit">
-  <h1>It's <span id="js-day"></span></h1>
-
+<body class="kc-is-open">
+  
   <h5 id="clock"></h5>
 
-  <p>Kid Care Times</p>
-  <ul>
-    <li>
-      Morning: <span id="js-first-open"></span> - <span id="js-first-close"></span>
-    </li>
-    <li>
-      Afternoon: <span id="js-second-open"></span> - <span id="js-second-close"></span>
-    </li>
-  </ul>
+  <div class="wrapper">
+    <h1>It's <span id="js-day"></span></h1>
 
-  <p>You have <span id="js-timeleft"></span> Minutes Until Kid Care Closes Today</p>
+    <p>Kid Care Times</p>
+    <ul>
+      <li>
+        Morning: <span id="js-first-open"></span><span class="ampm">am</span> - <span id="js-first-close"></span><span class="ampm">pm</span>
+      </li>
+      <li>
+        Afternoon: <span id="js-second-open"></span><span class="ampm">pm</span> - <span id="js-second-close"></span><span class="ampm">pm</span>
+      </li>
+    </ul>
 
-</div>
+    <p>You have <span id="js-timeleft"></span> Minutes Until Kid Care Closes Today</p>
 
-<!-- build:js scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/modernizr/modernizr.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
+  </div>
 
-<!-- build:js scripts/main.js -->
-<script src="scripts/main.js"></script>
-<!-- endbuild -->
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/main.js"></script>
+  <script src="scripts/time.js"></script>
+  <!-- endbuild -->
 </body>
 </html>
