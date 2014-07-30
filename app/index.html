@@ -11,24 +11,38 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-<body class="kc-is-open">
+<body class="">
   
   <h5 id="clock"></h5>
 
   <div class="wrapper">
+
     <h1>It's <span id="js-day"></span></h1>
+    
+    <!-- KID CARE OPEN HTML -->
+    <div class="kc-is-open">
 
-    <p>Kid Care Times</p>
-    <ul>
-      <li>
-        Morning: <span id="js-first-open"></span> - <span id="js-first-close"></span>
-      </li>
-      <li>
-        Afternoon: <span id="js-second-open"></span> - <span id="js-second-close"></span>
-      </li>
-    </ul>
+      <p>Kid Care Times</p>
+      <ul>
+        <li>
+          Morning: <span id="js-first-open"></span> - <span id="js-first-close"></span>
+        </li>
+        <li>
+          Afternoon: <span id="js-second-open"></span> - <span id="js-second-close"></span>
+        </li>
+      </ul>
 
-    <p>You have <span id="js-timeleft"></span> Minutes Until Kid Care Closes Today</p>
+      <p>You have <span id="js-timeleft"></span> Minutes Until Kid Care Closes Today</p>
+    </div>
+
+
+    <!-- KID CARE CLOSED HTML -->
+    <div class="kc-is-closed">
+      <h4>Kid Care is closed right now.</h4>
+      <p>Kid Care will open again <span id="js-next-open"></span>.</p>
+
+    </div>
+    
 
   </div>
 

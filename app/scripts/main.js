@@ -25,7 +25,7 @@ Schedule.prototype = scheduleProto;
 var sunday     =  new Schedule('Sunday',    '13','16');
 var monday     =  new Schedule('Monday',    '8','13','16','21');
 var tuesday    =  new Schedule('Tuesday',   '8','13','16','21');
-var wednesday  =  new Schedule('Wednesday', '8','13','16','21');
+var wednesday  =  new Schedule('Wednesday', '8','13','15','21');
 var thursday   =  new Schedule('Thursday',  '8','13','16','21');
 var friday     =  new Schedule('Friday',    '8','13','16','21');
 var saturday   =  new Schedule('Saturday',  '9','15');
@@ -62,8 +62,7 @@ function app() {
       m       = today.getMinutes(),
       s       = today.getSeconds(),
 
-      defaultView = '<h3>Sorry, Kid Care is closed.</h3>',
-      kcIsOpen  = $('body').hasClass('kc-is-open'),
+      kcIsOpen  = $('.wrapper').hasClass('kc-is-open'),
 
       m = checkTime(m),
       s = checkTime(s);
@@ -74,20 +73,26 @@ function app() {
 
   /* 5. If KC is closed now, tell the user when KC will open again. Do this before #6 so we have acces to JS generated day digit still */
   // today.getDay() + 1
-  if(kcIsOpen == false) {
-    // get next open time.
-    var tomorrow = day + 1;
+  // if(kcIsOpen == false) {
+  //   // get next open time.
+  //   var tomorrow = day + 1;
 
-    if (day === 0) { tomorrow = monday;    }
-    if (day === 1) { tomorrow = tuesday;   }
-    if (day === 2) { tomorrow = wednesday; }
-    if (day === 3) { tomorrow = thursday;  }
-    if (day === 4) { tomorrow = friday;    }
-    if (day === 5) { tomorrow = saturday;  }
-    if (day === 6) { tomorrow = sunday;    }
+  //   if (day === 0) { tomorrow = monday;    }
+  //   if (day === 1) { tomorrow = tuesday;   }
+  //   if (day === 2) { tomorrow = wednesday; }
+  //   if (day === 3) { tomorrow = thursday;  }
+  //   if (day === 4) { tomorrow = friday;    }
+  //   if (day === 5) { tomorrow = saturday;  }
+  //   if (day === 6) { tomorrow = sunday;    }
 
+  //   convertDay;
 
-  }
+  //   // console.log(day);
+
+  //   if(day.secondOpen < h) {
+  //     console.log(tomorrow.firstOpen)
+  //   }
+  // }
 
   /* 6. I turn the day returned into a word, like Monday, etc. */
   var convertDay = (function () {
@@ -110,23 +115,38 @@ function app() {
   var sc = day.secondClose;
 
   /* 8. Print open time(s) and close time(s) in the browser */
-  $('#js-first-open').html(convertTime(fo));
-  $('#js-first-close').html(convertTime(fc));
+  
 
-  if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
-    $('#js-second-open').html(convertTime(so));
-    $('#js-second-close').html(convertTime(sc));
-  }
-
-  /* Function to put up the "We're Closed!" sign up */
+  /* Functions that create the page based on being open or closed */
   function closeIt () {
-    $('body').removeClass('kc-is-open')
-    $('.wrapper').html(defaultView);
+      $('.kc-is-open').hide();
+      $('.kc-is-closed').show()
+
+      if(h < so) {
+        $('#js-next-open').html("at " + convertTime(so));
+      } else {
+        $('#js-next-open').html(' tomorrow.');
+      }
   }
 
-  /* 9. This is important. if() to check time and run closeIt() if necessary */
+  function openIt () {
+      $('.kc-is-open').show();
+      $('.kc-is-closed').hide()
+
+      $('#js-first-open').html(convertTime(fo));
+      $('#js-first-close').html(convertTime(fc));
+
+      if(day.secondOpen !== 'undefined' && day.secondClose !== 'undefined') {
+        $('#js-second-open').html(convertTime(so));
+        $('#js-second-close').html(convertTime(sc));
+      }
+  }
+
+  /* 9. This is important. if() to check time open or close as appropriate */
   if (h < fo || h >= fc && h < so || h > sc) {
-    closeIt()
+    closeIt();
+  } else {
+    openIt();
   }
 
   /* 10. Tell the user what time it is */
