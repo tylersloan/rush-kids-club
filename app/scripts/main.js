@@ -111,18 +111,28 @@
       $('#js-first-open').html(convertTime(fo));
       $('#js-first-close').html(convertTime(fc));
 
-      if(h < fc) {
+      if(h >= fo && h < fc) {
+        console.log('1');
         // If current hour is less than first close, tell user how much time is left
         tilClose(fc);
       }
 
-      if(convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') {
+      if(h >= so && h < sc) {
+        console.log('1');
+        // If current hour is less than first close, tell user how much time is left
+        tilClose(fc);
+      }
 
+      if(convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined' ) {
         // If KC is open at all in the afternoon, fill out the HTML
         $('#js-second-open').html(convertTime(so));
         $('#js-second-close').html(convertTime(sc));
+      }
 
+      if((convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') && (h >= so && h < sc)) {
+        console.log('2');
         if(h < sc) {
+          console.log('3')
           // If current hour is less than second close, tell user how much time is left
           tilClose(sc);
         }
@@ -133,7 +143,7 @@
       }
   }
 
-  /* 10. This is important. if() to check time open or close as appropriate */
+  /* 11. This is important. if() to check time open or close as appropriate */
   if ( (h >= fo && h < fc) || (h >= so & h < sc) ) {
     openIt();
   } else {
