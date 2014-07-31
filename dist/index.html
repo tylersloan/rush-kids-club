@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>rush kids</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="">
+  
+  <h5 id="clock"></h5>
+
+  <div class="wrapper">
+
+    <h1>It's <span id="js-day"></span></h1>
+    
+    <!-- KID CARE OPEN HTML -->
+    <div class="kc-is-open">
+
+      <p>Kid Care Times</p>
+      <ul>
+        <li>
+          Morning: <span id="js-first-open"></span> - <span id="js-first-close"></span>
+        </li>
+        <li>
+          Afternoon: <span id="js-second-open"></span> - <span id="js-second-close"></span>
+        </li>
+      </ul>
+
+      <p>You have <span id="js-timeleft"></span> hours until Kid Care closes today</p>
+    </div>
+
+
+    <!-- KID CARE CLOSED HTML -->
+    <div class="kc-is-closed">
+      <h4>Kid Care is closed right now.</h4>
+      <p>Kid Care will open again <span id="js-next-open"></span></p>
+
+    </div>
+    
+
+  </div>
+
+  <script src="scripts/vendor.js"></script>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
