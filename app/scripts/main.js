@@ -67,11 +67,18 @@
     $('.kc-is-open').hide();
     $('.kc-is-closed').show();
 
-    if(h < so) {
-      // If current hour is less than second open, tell user when second open is.
-      $('#js-next-open').html('at ' + convertTime(so));
-    } else {
-      // Second close has passed, presumably, so tell the user that KC will open again tomorrow at first open
+    if(h < fo) {
+      // If current hour is less than first open, tell user when first open is.
+      $('#js-next-open').html('today at ' + convertTime(fo));
+    }
+
+    if(h > fc) {
+      // Morning shift has come and gone, but KC will open again at second open
+      $('#js-next-open').html('today at ' + convertTime(so));
+    }
+    
+    if(h > sc) {
+      // Second close has passed, so tell the user that KC will open again tomorrow at first open
       $('#js-next-open').html(tomorrow.dayOfWeek +  ' at ' + tomorrow.firstOpen + 'am.');
     }
   }
