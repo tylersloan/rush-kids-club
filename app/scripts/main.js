@@ -134,5 +134,5 @@
   }
 
   /* 11. Tell the user what time it is. Why not? */
-  $('#clock').html(h + ':' + m);
+  // $('#clock').html(h + ':' + m);
 })();
