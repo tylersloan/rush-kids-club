@@ -112,13 +112,11 @@
       $('#js-first-close').html(convertTime(fc));
 
       if(h >= fo && h < fc) {
-        console.log('1');
         // If current hour is less than first close, tell user how much time is left
         tilClose(fc);
       }
 
       if(h >= so && h < sc) {
-        console.log('1');
         // If current hour is less than first close, tell user how much time is left
         tilClose(fc);
       }
@@ -130,9 +128,7 @@
       }
 
       if((convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') && (h >= so && h < sc)) {
-        console.log('2');
         if(h < sc) {
-          console.log('3')
           // If current hour is less than second close, tell user how much time is left
           tilClose(sc);
         }
