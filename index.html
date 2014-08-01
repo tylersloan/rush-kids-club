@@ -2,9 +2,13 @@
 <html class="no-js">
 <head>
   <meta charset="utf-8">
+  
   <title>Rush Kids Club</title>
+  
   <meta name="description" content="">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -21,9 +25,7 @@
   <meta name="msapplication-TileColor" content="#00a300">
   <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 
-  <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
-  <!-- endbuild -->
 </head>
 <body class="">
   
@@ -31,10 +33,10 @@
 
   <div class="wrapper">
 
-    <h1>Is Rush's Kids Club Open?</h1>
-    <!-- <span id="js-day"></span> -->
+    <h1>
+        Is Rush's Kids Club Open? <span class="icon-status" id="icon-status"></span>
+    </h1>
     
-    <!-- KID CARE OPEN HTML -->
     <div class="kc-is-open">
 
       <h4>Today's Kids Club Schedule</h4>
@@ -49,11 +51,9 @@
         </li>
       </ul>
 
-      <p>You have <span id="js-timeleft"></span> hours until Kid Care closes today.</p>
+      <p>You have <span id="js-timeleft"></span> until Kid Care closes today.</p>
     </div>
 
-
-    <!-- KID CARE CLOSED HTML -->
     <div class="kc-is-closed">
       <p>Kid Care is closed right now but will open again <span class="bold" id="js-next-open"></span></p>
 
@@ -62,15 +62,8 @@
 
   </div>
 
-  <!-- build:js scripts/vendor.js -->
-  <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- build:js scripts/main.js -->
   <script src="scripts/schedule.js"></script>
   <script src="scripts/main.js"></script>
-  <!-- endbuild -->
 </body>
 </html>

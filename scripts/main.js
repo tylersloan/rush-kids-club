@@ -61,9 +61,32 @@
   var fc = day.firstClose;
   var so = day.secondOpen;
   var sc = day.secondClose;
+	
+  function getTimeTil(arg) {
+  	var minTilArg = (arg - h)*60;
+  	var hrsTilArg  = ((minTilArg - m)/60).toFixed(2);
+  	return hrsTilArg;
+  }
+
+  
+  
+
+  
 
   /* 8. Functions that create the page based on being open or closed  */
-  function closeIt () {
+  function closeIt() {
+    var nums = getTimeTil(so).split('.');
+    var hours = nums[0];
+  var mins = ('.' + nums[1])*60;
+  var choose = function(selector, arg) {
+    $(selector).html('in ' + hours + arg + mins.toFixed(0) + ' minutes.');
+  };
+
+    $('#icon-status').addClass('closed');
+    if($('#icon-status').hasClass('open')) {
+        $(this).removeClass('open');
+    }
+      
     $('.kc-is-open').hide();
     $('.kc-is-closed').show();
 
@@ -74,7 +97,13 @@
 
     if(h > fc) {
       // Morning shift has come and gone, but KC will open again at second open
-      $('#js-next-open').html('today at ' + convertTime(so));
+  		if(getTimeTil(so) > .99 && getTimeTil(so) < 1.99) {
+  			choose('#js-next-open', ' hour ');
+  		} else if(getTimeTil(so) > .99) {
+        choose('#js-next-open', ' hours ');
+      } else {
+        $('#js-next-open').html('in ' + (getTimeTil(so) * 60).toFixed(0) + ' minutes.');    
+      }
     }
     
     if(h > sc) {
@@ -83,28 +112,20 @@
     }
   }
 
-  
-  /*
-   * 9. Functions that calculate hours until next open and next close
-   *    These functions also handle printing HTML of the calculated time.
-   */
-  // TODO: math to say when it will open again in hours/minutes
-  // function tilOpen(arg) {
-  //   var minsTilOpen = (arg - h)*60;
-  //   var hrsTilOpen  = ((minsTilClose - m)/60).toFixed(2);
-
-  //   $('#js-next-open').html( hrsTilOpen );
-  // }
-
-  function tilClose(arg) {
-    var minsTilClose = (arg - h)*60;
-    var hrsTilClose  = ((minsTilClose - m)/60).toFixed(2);
-
-    $('#js-timeleft').html( hrsTilClose );
-  }
-
   /* 10. Print open time(s) and close time(s) in the browser */
-  function openIt () {
+  function openIt() {
+      var nums = getTimeTil(sc).split('.');
+      var hours = nums[0];
+      var mins = ('.' + nums[1])*60;
+      var choose = function(selector, arg) {
+        $(selector).html('in ' + hours + arg + mins.toFixed(0) + ' minutes');
+      };
+
+      $('#icon-status').addClass('open');
+      if($('#icon-status').hasClass('closed')) {
+        $(this).removeClass('closed');
+      }
+      
       $('.kc-is-open').show();
       $('.kc-is-closed').hide();
 
@@ -113,12 +134,16 @@
 
       if(h >= fo && h < fc) {
         // If current hour is less than first close, tell user how much time is left
-        tilClose(fc);
+        $('#js-timeleft').html(getTimeTil(fc));
       }
 
       if(h >= so && h < sc) {
-        // If current hour is less than first close, tell user how much time is left
-        tilClose(fc);
+        // console.log('> so < sc')
+        
+
+
+        // If open and current hour is less than second close, tell user how much time is left
+        
       }
 
       if(convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined' ) {
@@ -129,8 +154,27 @@
 
       if((convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') && (h >= so && h < sc)) {
         if(h < sc) {
+          // $('#js-timeleft').html(getTimeTil(sc)); <= this thing works do not throw away yet
+
           // If current hour is less than second close, tell user how much time is left
-          tilClose(sc);
+          if(getTimeTil(sc) > .99 && getTimeTil(sc) < 1.99) {
+
+            console.log('and between .99 and 1.99')
+
+            choose('#js-timeleft', ' hour ');
+          }
+
+          else if(getTimeTil(sc) > .99) {
+            console.log('nums hours and mins: ' + nums, hours, mins + ' getTimeTil(sc): ' + getTimeTil(sc))
+
+            choose('#js-timeleft', ' hours ');
+          }
+
+          else {
+            console.log('and just else')
+
+            // $('#js-timeleft').html('in ' + (getTimeTil(sc) * 60).toFixed(0) + ' minutes.');    
+          }
         }
       } else {
         // If it isn't, leave it blank, for now

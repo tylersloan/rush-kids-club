@@ -42,6 +42,24 @@ h1 {
   }
 }
 
+.icon-status {
+    display: inline-block;
+    width: .55em;
+    height: 1em;
+    vertical-align: middle;
+    
+    
+    &.open {
+        background: url('../images/check.svg') no-repeat center center;
+        background-size: .5em .5em;
+    }
+    
+    &.closed {
+        background: url('../images/x.svg') no-repeat center center;
+        background-size: .5em .5em;
+    }
+}
+
 h4 { margin: .5em 0 .75em; }
 
 p, ul {
@@ -99,4 +117,4 @@ li {
 }
 
 .kc-is-open { color: $dark-green; }
-.kc-is-closed { color: $red; }
+.kc-is-closed{ color: $red }
