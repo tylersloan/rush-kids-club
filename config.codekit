@@ -1147,8 +1147,8 @@
 		},
 	"\/scripts\/main.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/scripts\/main.js",
 		"outputAbbreviatedPath": "\/scripts\/min\/main-ck.js",
 		"outputPathIsOutsideProject": 0,
@@ -1167,10 +1167,21 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/scripts\/min\/schedule-ck.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scripts\/min\/schedule-ck.js",
+		"outputAbbreviatedPath": "\/scripts\/min\/min\/schedule-ck-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/scripts\/schedule.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/scripts\/schedule.js",
 		"outputAbbreviatedPath": "\/scripts\/min\/schedule-ck.js",
 		"outputPathIsOutsideProject": 0,
@@ -1212,7 +1223,7 @@
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",
 	"displayValue": "rush-kid-care",
-	"displayValueWasSetByUser": 0,
+	"displayValueWasSetByUser": 1,
 	"iconImageName": "harddrive_orange"
 	},
 "projectSettings": {
