@@ -67,12 +67,7 @@
   	var hrsTilArg  = ((minTilArg - m)/60).toFixed(2);
   	return hrsTilArg;
   }
-
   
-  
-
-  
-
   /* 8. Functions that create the page based on being open or closed  */
   function closeIt() {
     var nums = getTimeTil(so).split('.');
