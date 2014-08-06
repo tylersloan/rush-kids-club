@@ -77,10 +77,10 @@
   function closeIt() {
     var nums = getTimeTil(so).split('.');
     var hours = nums[0];
-  var mins = ('.' + nums[1])*60;
-  var choose = function(selector, arg) {
-    $(selector).html('in ' + hours + arg + mins.toFixed(0) + ' minutes.');
-  };
+    var mins = ('.' + nums[1])*60;
+    var choose = function(selector, arg) {
+      $(selector).html('in ' + hours + arg + mins.toFixed(0) + ' minutes.');
+    };
 
     $('#icon-status').addClass('closed');
     if($('#icon-status').hasClass('open')) {
@@ -114,12 +114,7 @@
 
   /* 10. Print open time(s) and close time(s) in the browser */
   function openIt() {
-      var nums = getTimeTil(sc).split('.');
-      var hours = nums[0];
-      var mins = ('.' + nums[1])*60;
-      var choose = function(selector, arg) {
-        $(selector).html('in ' + hours + arg + mins.toFixed(0) + ' minutes');
-      };
+      
 
       $('#icon-status').addClass('open');
       if($('#icon-status').hasClass('closed')) {
@@ -132,24 +127,35 @@
       $('#js-first-open').html(convertTime(fo));
       $('#js-first-close').html(convertTime(fc));
 
+      $('#js-second-open').html(convertTime(so));
+      $('#js-second-close').html(convertTime(sc));
+
       if(h >= fo && h < fc) {
         // If current hour is less than first close, tell user how much time is left
-        $('#js-timeleft').html(getTimeTil(fc));
+
+        var nums = getTimeTil(fc).split('.');
+        var hours = nums[0];
+        var mins = ('.' + nums[1])*60;
+        var choose = function(selector, arg) {
+          $(selector).html(hours + arg + mins.toFixed(0) + ' minutes');
+        };
+
+        if(getTimeTil(fc) > .99 && getTimeTil(fc) < 1.99) {
+          choose('#js-timeleft', ' hour ');
+        } else if(getTimeTil(fc) > .99) {
+          choose('#js-timeleft', ' hours ');
+        } else {
+          $('#js-timeleft').html('in ' + (getTimeTil(fc) * 60).toFixed(0) + ' minutes.');    
+        }
+
+        // $('#js-timeleft').html(getTimeTil(fc));
+
       }
 
-      if(h >= so && h < sc) {
-        // console.log('> so < sc')
-        
-
-
-        // If open and current hour is less than second close, tell user how much time is left
-        
-      }
-
-      if(convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined' ) {
+      if(so === undefined && sc === undefined ) {
         // If KC is open at all in the afternoon, fill out the HTML
-        $('#js-second-open').html(convertTime(so));
-        $('#js-second-close').html(convertTime(sc));
+        $('.js-afternoon-schedule').remove()
+        
       }
 
       if((convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') && (h >= so && h < sc)) {
