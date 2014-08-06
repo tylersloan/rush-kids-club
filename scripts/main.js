@@ -145,7 +145,7 @@
         } else if(getTimeTil(fc) > .99) {
           choose('#js-timeleft', ' hours ');
         } else {
-          $('#js-timeleft').html('in ' + (getTimeTil(fc) * 60).toFixed(0) + ' minutes.');    
+          $('#js-timeleft').html((getTimeTil(fc) * 60).toFixed(0) + ' minutes');    
         }
 
         // $('#js-timeleft').html(getTimeTil(fc));
