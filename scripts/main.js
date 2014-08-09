@@ -67,12 +67,7 @@
   	var hrsTilArg  = ((minTilArg - m)/60).toFixed(2);
   	return hrsTilArg;
   }
-
   
-  
-
-  
-
   /* 8. Functions that create the page based on being open or closed  */
   function closeIt() {
     var nums = getTimeTil(so).split('.');
@@ -149,7 +144,7 @@
         } else if(getTimeTil(fc) > .99) {
           choose('#js-timeleft', ' hours ');
         } else {
-          $('#js-timeleft').html('in ' + (getTimeTil(fc) * 60).toFixed(0) + ' minutes.');    
+          $('#js-timeleft').html((getTimeTil(fc) * 60).toFixed(0) + ' minutes');    
         }
 
         // $('#js-timeleft').html(getTimeTil(fc));
