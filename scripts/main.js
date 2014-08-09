@@ -95,7 +95,7 @@
       $('#js-next-open').html('today at ' + convertTime(fo));
     }
 
-    if(h > fc) {
+    if(h >= fc) {
       // Morning shift has come and gone, but KC will open again at second open
   		if(getTimeTil(so) > .99 && getTimeTil(so) < 1.99) {
   			choose('#js-next-open', ' hour ');
@@ -103,6 +103,10 @@
         choose('#js-next-open', ' hours ');
       } else {
         $('#js-next-open').html('in ' + (getTimeTil(so) * 60).toFixed(0) + ' minutes.');    
+      }
+
+      if(so === undefined) {
+        $('#js-next-open').html('tomorrow at ' + convertTime(tomorrow.firstOpen) + ".")
       }
     }
     
