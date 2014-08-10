@@ -94,8 +94,10 @@
       // If current hour is less than first open, tell user when first open is.
       $('#js-next-open').html('today at ' + convertTime(fo) + ".");
 
-      if(so ===undefined) {
-        $('.js-afternoon-schedule').hide();
+      if(fo > 12 && so === undefined) {
+        $('.js-morning-schedule').remove();
+        $('#js-second-open').html(convertTime(fo));
+        $('#js-second-close').html(convertTime(fc));
       }
     }
 
