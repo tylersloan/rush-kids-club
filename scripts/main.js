@@ -81,6 +81,11 @@
     if($('#icon-status').hasClass('open')) {
         $(this).removeClass('open');
     }
+
+    $('#js-first-open').html(convertTime(fo));
+    $('#js-first-close').html(convertTime(fc));
+
+    
       
     $('.kc-is-open').hide();
     $('.kc-is-closed').show();
@@ -88,6 +93,10 @@
     if(h < fo) {
       // If current hour is less than first open, tell user when first open is.
       $('#js-next-open').html('today at ' + convertTime(fo) + ".");
+
+      if(so ===undefined) {
+        $('.js-afternoon-schedule').hide();
+      }
     }
 
     if(h >= fc) {
@@ -102,6 +111,10 @@
 
       if(so === undefined) {
         $('#js-next-open').html('tomorrow at ' + convertTime(tomorrow.firstOpen) + ".")
+        $('.js-afternoon-schedule').hide();
+      } else {
+        $('#js-second-open').html(convertTime(so));
+        $('#js-second-close').html(convertTime(sc));
       }
     }
     
