@@ -87,7 +87,7 @@
 
     if(h < fo) {
       // If current hour is less than first open, tell user when first open is.
-      $('#js-next-open').html('today at ' + convertTime(fo));
+      $('#js-next-open').html('today at ' + convertTime(fo) + ".");
     }
 
     if(h >= fc) {
