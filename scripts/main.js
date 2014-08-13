@@ -85,7 +85,10 @@
     $('#js-first-open').html(convertTime(fo));
     $('#js-first-close').html(convertTime(fc));
 
-    
+    if(so !== undefined) {
+      $('#js-second-open').html(convertTime(so));
+      $('#js-second-close').html(convertTime(sc));
+    }
       
     $('.kc-is-open').hide();
     $('.kc-is-closed').show();
@@ -96,8 +99,8 @@
 
       if(fo > 12 && so === undefined) {
         $('.js-morning-schedule').remove();
-        $('#js-second-open').html(convertTime(fo));
-        $('#js-second-close').html(convertTime(fc));
+        $('#js-second-open').html(convertTime(so));
+        $('#js-second-close').html(convertTime(sc));
       }
     }
 
