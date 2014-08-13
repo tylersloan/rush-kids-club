@@ -73,10 +73,7 @@ p, ul {
 }
 
 ul {
-  border-bottom: 1px solid $medium-grey;
   list-style: none;
-  margin-bottom: .5em;
-  padding-bottom: .5em;
 
   @media screen and (min-width: 480px) {
     margin-bottom: 1em;
@@ -114,6 +111,13 @@ li {
   @media screen and (max-width: 480px) {
     padding: 1em;
   }
+}
+
+.kc-is-open,
+.kc-is-closed {
+  border-bottom: 1px solid $medium-grey;
+  margin-bottom: .5em;
+  padding-bottom: .5em;
 }
 
 .kc-is-open { color: $dark-green; }
