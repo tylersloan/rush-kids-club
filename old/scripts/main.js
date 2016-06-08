@@ -61,13 +61,13 @@
   var fc = day.firstClose;
   var so = day.secondOpen;
   var sc = day.secondClose;
-	
+
   function getTimeTil(arg) {
   	var minTilArg = (arg - h)*60;
   	var hrsTilArg  = ((minTilArg - m)/60).toFixed(2);
   	return hrsTilArg;
   }
-  
+
   /* 8. Functions that create the page based on being open or closed  */
   function closeIt() {
     var nums = getTimeTil(so).split('.');
@@ -89,7 +89,7 @@
       $('#js-second-open').html(convertTime(so));
       $('#js-second-close').html(convertTime(sc));
     }
-      
+
     $('.kc-is-open').hide();
     $('.kc-is-closed').show();
 
@@ -111,7 +111,7 @@
   		} else if(getTimeTil(so) > .99) {
         choose('#js-next-open', ' hours ');
       } else {
-        $('#js-next-open').html('in ' + (getTimeTil(so) * 60).toFixed(0) + ' minutes.');    
+        $('#js-next-open').html('in ' + (getTimeTil(so) * 60).toFixed(0) + ' minutes.');
       }
 
       if(so === undefined) {
@@ -122,7 +122,7 @@
         $('#js-second-close').html(convertTime(sc));
       }
     }
-    
+
     if(h > sc) {
       // Second close has passed, so tell the user that KC will open again tomorrow at first open
       $('#js-next-open').html(tomorrow.dayOfWeek +  ' at ' + tomorrow.firstOpen + 'am.');
@@ -131,13 +131,13 @@
 
   /* 10. Print open time(s) and close time(s) in the browser */
   function openIt() {
-      
+
 
       $('#icon-status').addClass('open');
       if($('#icon-status').hasClass('closed')) {
         $(this).removeClass('closed');
       }
-      
+
       $('.kc-is-open').show();
       $('.kc-is-closed').hide();
 
@@ -162,7 +162,7 @@
         } else if(getTimeTil(fc) > .99) {
           choose('#js-timeleft', ' hours ');
         } else {
-          $('#js-timeleft').html((getTimeTil(fc) * 60).toFixed(0) + ' minutes');    
+          $('#js-timeleft').html((getTimeTil(fc) * 60).toFixed(0) + ' minutes');
         }
 
         // $('#js-timeleft').html(getTimeTil(fc));
@@ -172,7 +172,7 @@
       if(so === undefined && sc === undefined ) {
         // If KC is open at all in the afternoon, fill out the HTML
         $('.js-afternoon-schedule').remove()
-        
+
       }
 
       if((convertTime(so) !== 'undefined' && convertTime(sc) !== 'undefined') && (h >= so && h < sc)) {
@@ -196,7 +196,7 @@
           else {
             console.log('and just else')
 
-            // $('#js-timeleft').html('in ' + (getTimeTil(sc) * 60).toFixed(0) + ' minutes.');    
+            // $('#js-timeleft').html('in ' + (getTimeTil(sc) * 60).toFixed(0) + ' minutes.');
           }
         }
       } else {
