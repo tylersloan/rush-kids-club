@@ -4,13 +4,16 @@ var Main = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<header>header</header>
-				<main className="main">
-					{this.props.children}
-				</main>
+				{this.props.children}
 			</div>
 		)
 	}
+
+	// loadSchedule: function() {
+	//   this.setState({
+	//     schedule: require('../../public/js/schedule')
+	//   });
+	// }
 })
 
 module.exports = Main;

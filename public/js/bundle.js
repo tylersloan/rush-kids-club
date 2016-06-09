@@ -25845,44 +25845,46 @@
 	var React = __webpack_require__(1);
 	var Main = __webpack_require__(230);
 	var Home = __webpack_require__(231);
-	// var Schedule = require('../components/Schedule');
-	var Router = __webpack_require__(168);
-	var Route = Router.Route;
-	var IndexRoute = Router.IndexRoute;
+	var Header = __webpack_require__(232);
+	var Schedule = __webpack_require__(233);
+	var ReactRouter = __webpack_require__(168);
+	var Router = ReactRouter.Router;
+	var Route = ReactRouter.Route;
+	var History = ReactRouter.History;
+
+	var IndexRoute = ReactRouter.IndexRoute;
 
 	module.exports = React.createElement(
 	  Route,
 	  { path: '/', component: Main },
-	  React.createElement(IndexRoute, { component: Home })
+	  React.createElement(Route, { path: 'schedule', component: Schedule }),
+	  React.createElement(IndexRoute, { component: Header })
 	);
 
 /***/ },
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
 
 	var Main = React.createClass({
-		displayName: "Main",
+		displayName: 'Main',
 
 		render: function render() {
 			return React.createElement(
-				"div",
+				'div',
 				null,
-				React.createElement(
-					"header",
-					null,
-					"header"
-				),
-				React.createElement(
-					"main",
-					{ className: "main" },
-					this.props.children
-				)
+				this.props.children
 			);
 		}
+
+		// loadSchedule: function() {
+		//   this.setState({
+		//     schedule: require('../../public/js/schedule')
+		//   });
+		// }
 	});
 
 	module.exports = Main;
@@ -25902,12 +25904,110 @@
 			return React.createElement(
 				'h2',
 				null,
-				'God view'
+				'Home Component'
 			);
 		}
 	});
 
 	module.exports = Home;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Header = React.createClass({
+		displayName: "Header",
+
+		render: function render() {
+			return React.createElement(
+				"header",
+				{ className: "wrapper" },
+				React.createElement(
+					"h1",
+					null,
+					"Is Rush's Kids Club Open? ",
+					React.createElement("span", { "class": "icon-status", id: "icon-status" })
+				),
+				React.createElement(
+					"nav",
+					null,
+					React.createElement(
+						"ul",
+						null,
+						React.createElement(
+							"li",
+							null,
+							React.createElement(
+								"a",
+								{ href: "./" },
+								"Live"
+							)
+						),
+						React.createElement(
+							"li",
+							null,
+							React.createElement(
+								"a",
+								{ href: "./schedule" },
+								"Schedule"
+							)
+						)
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Header;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(168);
+
+	var Profile = React.createClass({
+		displayName: 'Profile',
+
+		getInitialState: function getInitialState() {
+			return {
+				notes: [],
+				bio: {},
+				repos: []
+			};
+		},
+		render: function render() {
+			console.log(this.props);
+			return React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'col-md-4' },
+					'user comp'
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-md-4' },
+					'repo comp'
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-md-4' },
+					'notes comp'
+				)
+			);
+		}
+	});
+
+	module.exports = Profile;
 
 /***/ }
 /******/ ]);
