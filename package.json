@@ -15,13 +15,13 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tylersloan/rush-kids-club.git"
   },
-  "author": "",
+  "author": "Tyler Sloan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tylersloan/rush-kids-club/issues"
