@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router'
+import NavLink from './NavLink'
 
 
 class App extends React.Component {
@@ -11,13 +12,13 @@ class App extends React.Component {
 				</h1>
 				<ul>
 					<li>
-						<Link to="/">Location</Link>
+						<NavLink to="/">Location</NavLink>
 					</li>
 					<li>
-						<Link to="/today">Today's Schedule</Link>
+						<NavLink to="/today">Today's Schedule</NavLink>
 					</li>
 					<li>
-						<Link to="/schedule">Full Schedule</Link>
+						<NavLink to="/schedule">Full Schedule</NavLink>
 					</li>
 				</ul>
 

@@ -10,8 +10,8 @@ render((
 	<Router history={hashHistory}>
 		<Route component={App}>
 			<Route path="/" component={Location}></Route>
-			<Route path="/schedule" component={Schedule}></Route>
-			<Route path="/today" component={Today}></Route>
+			<Route path="/schedule/:location" component={Schedule}></Route>
+			<Route path="/today/:location" component={Today}></Route>
 		</Route>
 	</Router>
 ), document.getElementById('app'))
