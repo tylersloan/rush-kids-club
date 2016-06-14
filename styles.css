@@ -42,6 +42,20 @@ h1 {
 h4 {
   margin: .5em 0 .75em; }
 
+a {
+  border-bottom: 1px dotted;
+  color: #447125;
+  padding-bottom: 2px;
+  text-decoration: none; }
+
+.nav-item:hover {
+  color: #333;
+}
+
+.nav-item.is-active {
+  font-weight: bolder;
+}
+
 p, ul {
   font-size: 1em;
   font-weight: 200;
