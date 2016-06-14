@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, IndexLink } from 'react-router'
-
 import NavLink from './NavLink'
 
 class Location extends React.Component {

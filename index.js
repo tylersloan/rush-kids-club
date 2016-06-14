@@ -2,8 +2,8 @@
 import React from 'react'
 // import render method only from react-dom
 import { render } from 'react-dom'
-// import router, route, hashHistory, and indexroute methods from react-router
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+// import router, route, browserHistory, and indexroute methods from react-router
+import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 // import custom modules
 import App from './modules/App'
 import Schedule from './modules/Schedule'
@@ -12,7 +12,7 @@ import Location from './modules/Location'
 import Home from './modules/Home'
 
 render((
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path="/" component={App}>
 			<IndexRoute component={Home}/>
 			<Route path="/" component={Location}></Route>
