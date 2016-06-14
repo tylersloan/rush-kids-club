@@ -1,9 +1,11 @@
 import React from 'react'
+import Location from './Location'
 
 class Today extends React.Component {
 	render() {
 		return (
 			<div>
+				<Location />
 				<h4>Today's Kids Club {this.props.params.location} Schedule</h4>
 				<ul class="js-schedule">
 				  <li class="js-morning-schedule">
