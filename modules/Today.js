@@ -1,11 +1,11 @@
 import React from 'react'
-import Location from './Location'
+import Navigation from './Navigation'
 
 class Today extends React.Component {
 	render() {
 		return (
 			<div>
-				<Location />
+				<Navigation />
 				<h4>Today's Kids Club {this.props.params.location} Schedule</h4>
 				<ul class="js-schedule">
 				  <li class="js-morning-schedule">

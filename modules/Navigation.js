@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, IndexLink } from 'react-router'
 import NavLink from './NavLink'
 
-class Location extends React.Component {
+class Navigation extends React.Component {
 	render() {
 		return (
 			<div>
@@ -22,4 +22,4 @@ class Location extends React.Component {
 	}
 }
 
-export default Location
+export default Navigation
