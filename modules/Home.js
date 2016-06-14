@@ -14,7 +14,6 @@ export default React.createClass ({
 		this.context.router.push(path)
 	},
 	render() {
-		console.log(this.state)
 		return (
 			<div>
 				<h4>Enter a location:</h4>

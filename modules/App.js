@@ -11,7 +11,7 @@ export default React.createClass({
 	render() {
 		return (
 			<div>
-				<h1>Is Rush's Kids Club Open? <span class="icon-status" id="icon-status"></span></h1>
+				<h1>Is Gold's Kids Club Open? <span class="icon-status" id="icon-status"></span></h1>
 				{this.props.children}
 			</div>
 		)
