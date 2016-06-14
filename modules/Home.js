@@ -2,12 +2,24 @@ import React from 'react';
 import NavLink from './NavLink'
 
 
-class Home extends React.Component {
+// class Home extends React.Component {
+export default React.createClass ({
+	contextTypes: {
+		router: React.PropTypes.object
+	},
+	go(e) {
+		e.preventDefault()
+		const userLocation = e.target.elements[0].value
+		console.log(userLocation)
+	},
 	render() {
 		return (
 			<div>
 				<h4>Enter a location:</h4>
-				<input id="js-location-input" type="text"/>
+				<form onSubmit={this.go}>
+					<input id="js-location-input" type="text"/>
+					<button type="submit">Go</button>
+				</form>
 				<br/>
 				<br/>
 				<hr/>
@@ -31,6 +43,6 @@ class Home extends React.Component {
 			</div>
 		)
 	}
-}
+})
 
-export default Home
+// export default Home
