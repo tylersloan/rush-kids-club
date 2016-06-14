@@ -4,13 +4,22 @@ import NavLink from './NavLink'
 
 // class Home extends React.Component {
 export default React.createClass ({
+	// get context in this component
 	contextTypes: {
 		router: React.PropTypes.object
 	},
 	go(e) {
 		e.preventDefault()
-		const userLocation = e.target.elements[0].value
-		console.log(userLocation)
+		const enteredLocation = e.target.elements[0].value
+		// this.setState({
+		// 	userLocation : enteredLocation
+		// });
+
+		const path = `/today/${enteredLocation}`
+		// use this context to push path to the router
+		this.context.router.push(path)
+
+		// console.log(this.state.userLocation)
 	},
 	render() {
 		return (
@@ -20,26 +29,6 @@ export default React.createClass ({
 					<input id="js-location-input" type="text"/>
 					<button type="submit">Go</button>
 				</form>
-				<br/>
-				<br/>
-				<hr/>
-				<br/>
-				<ul>
-					<li>
-						<NavLink to="/schedule/29609">29609 Schedule</NavLink>
-					</li>
-					<li>
-						<NavLink to="/schedule/cherrydale">Cherrydale Schedule</NavLink>
-					</li>
-				</ul>
-				<ul>
-					<li>
-						<NavLink to="/today/29609">29609 Schedule Today</NavLink>
-					</li>
-					<li>
-						<NavLink to="/today/cherrydale">Cherrydale Schedule Today</NavLink>
-					</li>
-				</ul>
 			</div>
 		)
 	}

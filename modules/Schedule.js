@@ -3,10 +3,11 @@ import Navigation from './Navigation'
 
 class Schedule extends React.Component {
 	render() {
+		const location = this.props.params.location
 		return (
 			<div>
-				<Navigation />
-				<h4>Full Kids Club at {this.props.params.location} Schedule</h4>
+				<Navigation loc={location} />
+				<h4>Full Kids Club at {location} Schedule</h4>
 			</div>
 		)
 	}

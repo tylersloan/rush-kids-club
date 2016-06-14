@@ -11,10 +11,10 @@ class Navigation extends React.Component {
 						<NavLink to="/" onlyActiveOnIndex={true}>Home</NavLink>
 					</li>
 					<li>
-						<NavLink to="/today">Today's Schedule</NavLink>
+						<NavLink to={`/today/${this.props.loc}`}>Today's Schedule</NavLink>
 					</li>
 					<li>
-						<NavLink to="/schedule">Full Schedule</NavLink>
+						<NavLink to={`/schedule/${this.props.loc}`}>Full Schedule</NavLink>
 					</li>
 				</ul>
 			</div>

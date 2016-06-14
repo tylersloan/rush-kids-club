@@ -3,10 +3,11 @@ import Navigation from './Navigation'
 
 class Today extends React.Component {
 	render() {
+		const location = this.props.params.location
 		return (
 			<div>
-				<Navigation />
-				<h4>Today's Kids Club {this.props.params.location} Schedule</h4>
+				<Navigation loc={location} />
+				<h4>Today's Kids Club {location} Schedule</h4>
 				<ul class="js-schedule">
 				  <li class="js-morning-schedule">
 				    <span class="label">Morning:</span>

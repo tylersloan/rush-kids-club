@@ -2,8 +2,12 @@ import React from 'react';
 import NavLink from './NavLink'
 import Home from './Home'
 
-
-class App extends React.Component {
+export default React.createClass({
+	getInitialState() {
+		return {
+			userLocation: ''
+		}
+	},
 	render() {
 		return (
 			<div>
@@ -12,6 +16,4 @@ class App extends React.Component {
 			</div>
 		)
 	}
-}
-
-export default App
+})
