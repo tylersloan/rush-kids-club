@@ -1,12 +1,12 @@
-import React from 'react'
-import Navigation from './Navigation'
-import NavLink from './NavLink'
-import kcSchedule from '../schedule.js'
-import h from '../helpers'
+import React from 'react';
+import Navigation from './Navigation';
+import NavLink from './NavLink';
+import kcSchedule from '../utils/fixture.js'
+import h from '../utils/index';
 
 class Schedule extends React.Component {
 	render() {
-		const locationKeys = Object.keys(kcSchedule)
+		const locationKeys = Object.keys(kcSchedule);
 		const location = this.props.params.location
 
 		if (locationKeys.includes(location)) {

@@ -1,16 +1,27 @@
 import React from 'react'
 import Navigation from './Navigation'
 import NavLink from './NavLink'
-import kcSchedule from '../schedule.js'
-import h from '../helpers'
+import h from '../utils/index'
+import {connect} from 'react-redux';
+import ListView from '../components/listView';
 
 class Today extends React.Component {
-	render() {
-		const locationKeys = Object.keys(kcSchedule)
-		const location = this.props.params.location
 
+
+
+
+	render() {
+		const {content} = this.props.app_reducer;
+		const locationKeys = Object.keys(content)
+		const location = this.props.params.location;
+		if(!Object.keys(content).length){
+			return <div> Loading</div>;
+		}
 		if (locationKeys.includes(location)) {
-			console.log(kcSchedule[location].schedule.sunday.shift)
+			console.log(content[location].schedule.sunday.shift)
+
+			//<ListView items={[{label:'',text:""}...]} />
+			// Wrap your listview to enhance it.
 
 			return (
 				<div>
@@ -44,4 +55,9 @@ class Today extends React.Component {
 	}
 }
 
-export default Today
+function select(state){
+	return state;
+}
+
+export default connect(select)(Today);
+
