@@ -8,7 +8,7 @@ export default React.createClass ({
 	},
 	go(e) {
 		e.preventDefault()
-		const enteredLocation = e.target.elements[0].value
+		const enteredLocation = e.target.elements[0].value.toLowerCase()
 		const path = `/today/${enteredLocation}`
 		// use this context to push path to the router
 		this.context.router.push(path)
