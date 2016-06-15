@@ -1,6 +1,17 @@
 import React from 'react';
 
 
+/**
+ * You can pass validator functions from parents to this input
+ * You can also pass valid inputs as an array as props to this input to manage the state
+ * For example : If the text entered does not match the valid inputs  you can set your error state to true and handle it from there using 
+ * onChange method of the input Element
+ *
+ * However, the thumb rule of Components is to ensure that they can be reused everywhere.
+ * A component which has the reference of the parent and uses that reference to access the parent's functions is not reusable
+ * So always ensure that the component takes props which are Generic
+ */
+
 export default class MyInput extends React.Component{
 	constructor(props){
 		super(props);

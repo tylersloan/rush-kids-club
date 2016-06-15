@@ -1,12 +1,14 @@
 import React from 'react';
 import Navigation from './Navigation';
 import NavLink from './NavLink';
-import kcSchedule from '../utils/fixture.js'
 import h from '../utils/index';
+import {connect} from 'react-redux';
 
 class Schedule extends React.Component {
 	render() {
-		const locationKeys = Object.keys(kcSchedule);
+				const {content} = this.props.app_reducer;
+
+		const locationKeys = Object.keys(content);
 		const location = this.props.params.location
 
 		if (locationKeys.includes(location)) {
@@ -26,4 +28,9 @@ class Schedule extends React.Component {
 	}
 }
 
-export default Schedule
+function select(state){
+	return state;
+}
+
+export default connect(select)(Schedule);
+

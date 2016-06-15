@@ -5,6 +5,41 @@ import h from '../utils/index'
 import {connect} from 'react-redux';
 import ListView from '../components/listView';
 
+/**
+ * I have this dumb component within the same file as the container because this is a tightly bound child
+ * Not reusable.
+ */
+class TodayRow extends React.Component{
+
+
+	render(){
+		const {location} = this.props;
+		const listViewItems = [{
+			label : "Morning",
+			text : "-"
+		},{
+			label : "Evening",
+			text : "-"
+		}];
+		return <div> 
+					<h4>Today's Kids Club <u>{h.titleCase(location)}</u> Schedule</h4>
+						
+						<ListView items={listViewItems} />
+
+						<div class="kc-is-open">
+						  <p>You have <span id="js-timeleft"></span> until Kids Club closes.</p>
+						</div>
+
+						<div class="kc-is-closed">
+						  <p>Kids Club is closed right now but will open again <span class="bold" id="js-next-open"></span></p>
+						</div>
+				 </div>
+	}
+}
+
+
+
+
 class Today extends React.Component {
 
 
@@ -14,6 +49,7 @@ class Today extends React.Component {
 		const {content} = this.props.app_reducer;
 		const locationKeys = Object.keys(content)
 		const location = this.props.params.location;
+		
 		if(!Object.keys(content).length){
 			return <div> Loading</div>;
 		}
@@ -26,25 +62,7 @@ class Today extends React.Component {
 			return (
 				<div>
 					<Navigation loc={location} />
-					<h4>Today's Kids Club {h.titleCase(location)} Schedule</h4>
-					<ul>
-					  <li>
-					    <span class="label">Morning:</span>
-					    <span id="js-first-open"></span> - <span id="js-first-close"></span>
-					  </li>
-					  <li>
-					    <span class="label">Afternoon:</span>
-					    <span id="js-second-open"></span> - <span id="js-second-close"></span>
-					  </li>
-					</ul>
-
-					<div class="kc-is-open">
-					  <p>You have <span id="js-timeleft"></span> until Kids Club closes.</p>
-					</div>
-
-					<div class="kc-is-closed">
-					  <p>Kids Club is closed right now but will open again <span class="bold" id="js-next-open"></span></p>
-					</div>
+					<TodayRow location={location}/>
 				</div>
 			)
 		} else {
