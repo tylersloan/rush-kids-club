@@ -13,9 +13,9 @@ class Navigation extends React.Component {
 					<li>
 						<NavLink to={`/today/${this.props.loc}`}>Today's Schedule</NavLink>
 					</li>
-					<li>
+					{/*<li>
 						<NavLink to={`/schedule/${this.props.loc}`}>Full Schedule</NavLink>
-					</li>
+					</li>*/}
 				</ul>
 			</div>
 		)
