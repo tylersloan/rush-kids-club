@@ -3,31 +3,42 @@ import Navigation from './Navigation';
 import NavLink from './NavLink';
 import h from '../utils/index';
 import {connect} from 'react-redux';
+import {set_chunk, clear_chunk} from '../actions/index';
+
+class TableRow extends React.Component {
+	render() {
+		const {location} = this.props;
+		const hours = this.props.app_reducer.content; // THE DATA!
+		return (
+			<pre>{JSON.stringify(hours)}</pre>
+		)
+	}
+}
 
 class Schedule extends React.Component {
-	componentDidMount(){
-		//dispatch(get_chunk(value));
+	componentWillMount(){
+		const {dispatch} = this.props;
+		const location = this.props.params.location;
+		dispatch(set_chunk(location));
 	}
 	render() {
 		const {content} = this.props.app_reducer;
-
-		const locationKeys = Object.keys(content);
 		const location = this.props.params.location;
+		let message = <h4>Kids Club Schedule at Gold's Gym {h.titleCase(location)}</h4>;
 
-		if (content.schedule) {
-				console.log(this.props.children)
-			return (
+		if (true) {
+			message = (
 				<div>
-					<Navigation loc={location} />
+				 	<Navigation loc={location} />
 					<h4>Kids Club Schedule at Gold's Gym {h.titleCase(location)}</h4>
-					{this.props.children}
+					<TableRow {...this.props} location={location} />
 				</div>
 			)
 		} else {
-			return (
-				<div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>
-			)
+			message = <div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>;
 		}
+
+		return message;
 	}
 }
 
