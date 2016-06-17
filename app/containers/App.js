@@ -8,6 +8,9 @@ class App extends React.Component{
 	render(){
 		return (
 			<div className="app">
+				<header>
+					<h1>Is Gold's Kids Club Open? <span class="icon-status" id="icon-status"></span></h1>
+				</header>
 				{this.props.children}
 			</div>
 		)
