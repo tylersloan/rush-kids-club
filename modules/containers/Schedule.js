@@ -5,13 +5,16 @@ import h from '../utils/index';
 import {connect} from 'react-redux';
 
 class Schedule extends React.Component {
+	componentDidMount(){
+		//dispatch(get_chunk(value));
+	}
 	render() {
-				const {content} = this.props.app_reducer;
+		const {content} = this.props.app_reducer;
 
 		const locationKeys = Object.keys(content);
-		const location = this.props.params.location
+		const location = this.props.params.location;
 
-		if (locationKeys.includes(location)) {
+		if (content.schedule) {
 				console.log(this.props.children)
 			return (
 				<div>

@@ -2,12 +2,19 @@ import { combineReducers } from 'redux';
 
 import { routerReducer, LOCATION_CHANGE } from 'react-router-redux';
 
-export default function app_reducer(state={content : {}},action){
+
+const initialState = { content : {} };
+
+export default function app_reducer(state={initialState},action){
 	switch(action.type){
-		case 'MY_ACTION':
-			return Object.assign({},state,{
-				content : action.payload.content
-			});
+		case 'CLEAR_CHUNK':
+			return Object.assign({},initialState);
+		case 'GET_CHUNK':
+		    var {content} = action.payload;
+		    
+		    return Object.assign({},state.content,{
+		    	content
+		    });
 
 		default :
 			return state;

@@ -1,13 +1,31 @@
 
 import kcSchedule from '../utils/fixture.js';
 
-export function set_data(){
+export function clear_chunk(){
 	return {
-		type : 'MY_ACTION',
+		type : 'CLEAR_CHUNK'
+	}
+}
+
+
+export function get_chunk(query){
+	let content = kcSchedule[query];
+	return {
+		type : 'GET_CHUNK',
 		payload : {
-			content : kcSchedule
+			query,
+			content
 		}
 	}
 }
 
 
+
+export function set_chunk(query){
+	return dispatch=>{
+		dispatch(clear_chunk());
+		setTimeout(()=>{
+			dispatch(get_chunk(query));
+		},0)
+	};
+}

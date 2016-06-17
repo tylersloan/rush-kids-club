@@ -4,6 +4,7 @@ import NavLink from './NavLink'
 import h from '../utils/index'
 import {connect} from 'react-redux';
 import ListView from '../components/listView';
+import {set_chunk, clear_chunk} from '../actions/index';
 
 /**
  * I have this dumb component within the same file as the container because this is a tightly bound child
@@ -43,33 +44,56 @@ class TodayRow extends React.Component{
 class Today extends React.Component {
 
 
+	constructor(props){
+		super(props);
+		
+	}
+	componentWillMount(){
+		const {dispatch} = this.props;
+		const location = this.props.params.location;
+		dispatch(set_chunk(location));
+		console.log('mounting')
+	}
+
+	
+	componentWillReceiveProps(newProps){
+		const {dispatch} = this.props;
+		const new_location = newProps.params.location;
+		if(new_location !== this.props.params.location){
+			dispatch(set_chunk(new_location));
+			console.log('recieveprops');
+		}
+	}
+		
+
+	componentWillUnmount(){
+		const {dispatch} = this.props;
+		dispatch(clear_chunk());
+	}
 
 
 	render() {
+
 		const {content} = this.props.app_reducer;
-		const locationKeys = Object.keys(content)
+		
 		const location = this.props.params.location;
 		
-		if(!Object.keys(content).length){
-			return <div> Loading</div>;
-		}
-		if (locationKeys.includes(location)) {
-			console.log(content[location].schedule.sunday.shift)
-
-			//<ListView items={[{label:'',text:""}...]} />
-			// Wrap your listview to enhance it.
-
-			return (
-				<div>
-					<Navigation loc={location} />
-					<TodayRow location={location}/>
-				</div>
-			)
-		} else {
+		if(typeof content === 'undefined'){
 			return (
 				<div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>
 			)
 		}
+
+		//<ListView items={[{label:'',text:""}...]} />
+		// Wrap your listview to enhance it.
+
+		return (
+			<div>
+				<Navigation loc={location} />
+				<TodayRow location={location}/>
+			</div>
+		)
+	
 	}
 }
 
