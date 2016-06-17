@@ -12,8 +12,8 @@ import {set_chunk, clear_chunk} from '../actions/index';
  */
 class TodayRow extends React.Component{
 	render() {
-		console.log(this.props)
 		const {location} = this.props;
+		const hours = this.props.app_reducer.content; // THE DATA!
 		const listViewItems = [{
 			label : "Morning",
 			text : "-"
@@ -29,7 +29,7 @@ class TodayRow extends React.Component{
 				  <p>You have <span className="bold">&times;&times; minutes</span> until Kids Club closes.</p>
 				</div>
 				<div className="kc-is-closed">
-				  <p>Kids Club is closed right now but will open again <span className="bold">in &times;&times; inutes</span></p>
+				  <p>Kids Club is closed right now but will open again <span className="bold">&times;&times; minutes</span></p>
 				</div>*/}
 			</div>
 		)
@@ -37,46 +37,52 @@ class TodayRow extends React.Component{
 }
 
 class Today extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 	}
-	componentWillMount(){
+	componentWillMount() {
 		const {dispatch} = this.props;
 		const location = this.props.params.location;
 		dispatch(set_chunk(location));
 		console.log('mounting')
 	}
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		const {dispatch} = this.props;
 		const new_location = newProps.params.location;
-		if(new_location !== this.props.params.location){
+		if(new_location !== this.props.params.location) {
 			dispatch(set_chunk(new_location));
 			console.log('recieveprops');
 		}
 	}
-	componentWillUnmount(){
+	componentWillUnmount() {
 		const {dispatch} = this.props;
 		dispatch(clear_chunk());
 	}
 	render() {
-		const {hours} = this.props.app_reducer;
+		const {content} = this.props.app_reducer;
 		const location = this.props.params.location;
-		let message = "<p>Loading...</p>";
-		if(typeof hours === 'undefined'){
+		let message = "Loading...";
+		/**
+		 * TODO
+		 * Fix the Flash. Why is this 'undefined' for any amount of time? What's happening?
+		 */
+		if(typeof content === 'undefined') {
 			message = <div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>;
 		} else {
+			//<ListView items={[{label:'',text:""}...]} />
+			// Wrap your listview to enhance it.
 			message = <div>
 									<Navigation loc={location} />
-									<TodayRow location={location} />
+									<TodayRow {...this.props} location={location}/>
 								</div>
+
 		}
-		//<ListView items={[{label:'',text:""}...]} />
-		// Wrap your listview to enhance it.
+
 		return message;
 	}
 }
 
-function select(state){
+function select(state) {
 	return state;
 }
 
