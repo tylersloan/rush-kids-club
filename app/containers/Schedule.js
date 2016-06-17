@@ -42,7 +42,7 @@ class Schedule extends React.Component {
 	}
 }
 
-function select(state){
+function select(state) {
 	return state;
 }
 
