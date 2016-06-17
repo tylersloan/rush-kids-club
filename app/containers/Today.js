@@ -44,14 +44,14 @@ class Today extends React.Component {
 		const {dispatch} = this.props;
 		const location = this.props.params.location;
 		dispatch(set_chunk(location));
-		console.log('mounting')
+		// console.log('mounting')
 	}
 	componentWillReceiveProps(newProps) {
 		const {dispatch} = this.props;
 		const new_location = newProps.params.location;
 		if(new_location !== this.props.params.location) {
 			dispatch(set_chunk(new_location));
-			console.log('recieveprops');
+			// console.log('recieveprops');
 		}
 	}
 	componentWillUnmount() {
