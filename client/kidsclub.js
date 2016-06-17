@@ -8,21 +8,18 @@ import Home from './components/Home';
 import Week from './components/Week';
 import Navigation from './components/Navigation';
 
-const App = React.createClass({
-	render() {
-		return (
-			<h1>hello</h1>
-		)
-	}
-});
+import { Provider } from 'react-redux';
+import store, { history } from './store';
 
 const router = (
-	<Router history={browserHistory}>
-		<Route path="/" component={Main}>
-			<IndexRoute component={Home}></IndexRoute>
-			<Route path="/week/:locationId" component={Week}></Route>
-		</Route>
-	</Router>
+	<Provider store={store}>
+		<Router history={history}>
+			<Route path="/" component={Main}>
+				<IndexRoute component={Home}></IndexRoute>
+				<Route path="/week/:searchTermId" component={Week}></Route>
+			</Route>
+		</Router>
+	</Provider>
 )
 
 render(router, document.getElementById('root'));

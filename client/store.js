@@ -3,13 +3,13 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
 // import rootReducer
-import rootReducer from './reducers/index.js';
+import rootReducer from './reducers/index';
 
 import hours from './data/hours';
 
 //create obj for default data
 const defaultState = {
-	location
+	searchTerm
 }
 
 const store = createStore(rootReducer, defaultState);
