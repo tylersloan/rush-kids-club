@@ -59,10 +59,10 @@ class Today extends React.Component {
 		dispatch(clear_chunk());
 	}
 	render() {
-		const {content} = this.props.app_reducer;
+		const {hours} = this.props.app_reducer;
 		const location = this.props.params.location;
 		let message = "<p>Loading...</p>";
-		if(typeof content === 'undefined'){
+		if(typeof hours === 'undefined'){
 			message = <div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>;
 		} else {
 			message = <div>
