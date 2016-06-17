@@ -11,7 +11,7 @@ export default function app_reducer(state={initialState},action){
 			return Object.assign({},initialState);
 		case 'GET_CHUNK':
 		    var {content} = action.payload;
-		    
+
 		    return Object.assign({},state.content,{
 		    	content
 		    });

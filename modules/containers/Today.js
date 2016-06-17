@@ -12,6 +12,7 @@ import {set_chunk, clear_chunk} from '../actions/index';
  */
 class TodayRow extends React.Component{
 	render() {
+		console.log(this.props)
 		const {location} = this.props;
 		const listViewItems = [{
 			label : "Morning",
@@ -24,12 +25,12 @@ class TodayRow extends React.Component{
 			<div>
 				<h4>Today's Kids Club {h.titleCase(location)} Schedule</h4>
 				<ListView items={listViewItems} />
-				<div className="kc-is-open">
-				  <p>You have <span id="js-timeleft"></span> until Kids Club closes.</p>
+				{/*<div className="kc-is-open">
+				  <p>You have <span className="bold">&times;&times; minutes</span> until Kids Club closes.</p>
 				</div>
 				<div className="kc-is-closed">
-				  <p>Kids Club is closed right now but will open again <span className="bold"></span></p>
-				</div>
+				  <p>Kids Club is closed right now but will open again <span className="bold">in &times;&times; inutes</span></p>
+				</div>*/}
 			</div>
 		)
 	}
@@ -66,7 +67,7 @@ class Today extends React.Component {
 		} else {
 			message = <div>
 									<Navigation loc={location} />
-									<TodayRow location={location}/>
+									<TodayRow location={location} />
 								</div>
 		}
 		//<ListView items={[{label:'',text:""}...]} />
