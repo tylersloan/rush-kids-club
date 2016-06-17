@@ -19,7 +19,6 @@ export default class MyInput extends React.Component{
 			error : false
 		}
 	}
-
 	handleChange() {
 		const val = this.refs.my_input.value.toLowerCase();
 		if(val.length) {
@@ -31,7 +30,6 @@ export default class MyInput extends React.Component{
 			console.log('err');
 		}
 	}
-
 	submit(e) {
 		e.preventDefault();
 		const {handleSubmit} = this.props;
@@ -42,7 +40,6 @@ export default class MyInput extends React.Component{
 			console.log('err');
 		}
 	}
-
 	render() {
 		const {error} = this.state;
 		const error_ui = error ? <div class="err">There was an error</div> : <span/>
