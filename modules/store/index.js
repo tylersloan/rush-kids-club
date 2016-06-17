@@ -7,9 +7,6 @@ const middleware = [thunkMiddleware, routerMiddleware(hashHistory)];
 import DevTools from '../containers/DevTools';
 
 export default function configureStore(initialState={}) {
-
-
-	 const store = createStore( rootReducer , compose(applyMiddleware(...middleware), DevTools.instrument()));	
-
+	 const store = createStore( rootReducer , compose(applyMiddleware(...middleware), DevTools.instrument()));
 	 return store;
 }
