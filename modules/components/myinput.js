@@ -21,7 +21,7 @@ export default class MyInput extends React.Component{
 	}
 
 	handleChange() {
-		const val = this.refs.my_input.value;
+		const val = this.refs.my_input.value.toLowerCase();
 		if(val.length) {
 			if(this.state.error) {
 				this.setState({error:false});
@@ -35,7 +35,7 @@ export default class MyInput extends React.Component{
 	submit(e) {
 		e.preventDefault();
 		const {handleSubmit} = this.props;
-		const val = this.refs.my_input.value;
+		const val = this.refs.my_input.value.toLowerCase();
 		if(!this.state.error) {
 			handleSubmit(val);
 		} else{
