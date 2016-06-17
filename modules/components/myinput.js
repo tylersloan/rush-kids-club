@@ -26,7 +26,7 @@ export default class MyInput extends React.Component{
 			if(this.state.error) {
 				this.setState({error:false});
 			}
-		}else{
+		} else {
 			this.setState({error: true});
 			console.log('err');
 		}
@@ -38,7 +38,7 @@ export default class MyInput extends React.Component{
 		const val = this.refs.my_input.value.toLowerCase();
 		if(!this.state.error) {
 			handleSubmit(val);
-		} else{
+		} else {
 			console.log('err');
 		}
 	}
