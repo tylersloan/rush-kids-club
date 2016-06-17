@@ -11,9 +11,7 @@ import {set_chunk, clear_chunk} from '../actions/index';
  * Not reusable.
  */
 class TodayRow extends React.Component{
-
-
-	render(){
+	render() {
 		const {location} = this.props;
 		const listViewItems = [{
 			label : "Morning",
@@ -22,31 +20,24 @@ class TodayRow extends React.Component{
 			label : "Evening",
 			text : "-"
 		}];
-		return <div> 
-					<h4>Today's Kids Club <u>{h.titleCase(location)}</u> Schedule</h4>
-						
-						<ListView items={listViewItems} />
-
-						<div class="kc-is-open">
-						  <p>You have <span id="js-timeleft"></span> until Kids Club closes.</p>
-						</div>
-
-						<div class="kc-is-closed">
-						  <p>Kids Club is closed right now but will open again <span class="bold" id="js-next-open"></span></p>
-						</div>
-				 </div>
+		return (
+			<div>
+				<h4>Today's Kids Club {h.titleCase(location)} Schedule</h4>
+				<ListView items={listViewItems} />
+				<div className="kc-is-open">
+				  <p>You have <span id="js-timeleft"></span> until Kids Club closes.</p>
+				</div>
+				<div className="kc-is-closed">
+				  <p>Kids Club is closed right now but will open again <span className="bold"></span></p>
+				</div>
+			</div>
+		)
 	}
 }
 
-
-
-
 class Today extends React.Component {
-
-
 	constructor(props){
 		super(props);
-		
 	}
 	componentWillMount(){
 		const {dispatch} = this.props;
@@ -54,8 +45,6 @@ class Today extends React.Component {
 		dispatch(set_chunk(location));
 		console.log('mounting')
 	}
-
-	
 	componentWillReceiveProps(newProps){
 		const {dispatch} = this.props;
 		const new_location = newProps.params.location;
@@ -64,36 +53,25 @@ class Today extends React.Component {
 			console.log('recieveprops');
 		}
 	}
-		
-
 	componentWillUnmount(){
 		const {dispatch} = this.props;
 		dispatch(clear_chunk());
 	}
-
-
 	render() {
-
 		const {content} = this.props.app_reducer;
-		
 		const location = this.props.params.location;
-		
+		let message = "<p>Loading...</p>";
 		if(typeof content === 'undefined'){
-			return (
-				<div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>
-			)
+			message = <div>This location does not exist. <NavLink to="/">Please search again.</NavLink></div>;
+		} else {
+			message = <div>
+									<Navigation loc={location} />
+									<TodayRow location={location}/>
+								</div>
 		}
-
 		//<ListView items={[{label:'',text:""}...]} />
 		// Wrap your listview to enhance it.
-
-		return (
-			<div>
-				<Navigation loc={location} />
-				<TodayRow location={location}/>
-			</div>
-		)
-	
+		return message;
 	}
 }
 
