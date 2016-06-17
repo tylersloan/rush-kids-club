@@ -75,7 +75,6 @@ class Today extends React.Component {
 									<Navigation loc={location} />
 									<TodayRow {...this.props} location={location}/>
 								</div>
-
 		}
 
 		return message;
