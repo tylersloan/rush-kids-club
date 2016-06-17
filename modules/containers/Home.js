@@ -10,18 +10,12 @@ function select(state){
 }
 
 export default connect(select)(React.createClass ({
-
 	go(value) {
-		// e.preventDefault()
-		// const enteredLocation = e.target.elements[0].value.toLowerCase()
 		const path = `/today/${value}`;
-		// use this context to push path to the router
 		const {dispatch} = this.props;
 		browserHistory.push(path);
-		
 	},
-	handleSubmit(){
-
+	handleSubmit() {
 	},
 	render() {
 		return <MyInput handleSubmit={(...args)=>this.go(...args)} />
