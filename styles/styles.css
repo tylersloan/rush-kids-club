@@ -104,39 +104,4 @@ li ~ li {
 .kc-is-closed {
   color: #ee2f39; }
 
-form {
-  width: 100%;
-  max-width: 14em;
-}
-
-input,
-.button {
-  -webkit-appearance: none;
-  border: none;
-  display: inline-block;
-  line-height: 29px;
-  padding: 5px;
-  vertical-align: middle;
-}
-
-input {
-  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5);
-  width: 75%;
-}
-
-.button {
-  background: #f1eb30;
-  color: #1e1e1e;
-  font-size: 20px;
-  font-weight: bolder;
-  width: 25%;
-  text-align: center;
-}
-
-.button.is-disabled {
-  color: whitesmoke;
-  cursor: not-allowed;
-  opacity: 0.25;
-}
-
 /*# sourceMappingURL=main.css.map */
