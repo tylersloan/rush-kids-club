@@ -8,7 +8,7 @@ module.exports = {
 		inline: true,
 		port: 3333
 	},
-	 devtool : 'source-map',
+	devtool : 'source-map',
 	module: {
 		loaders: [
 			{
@@ -22,7 +22,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: "style-loader!css-loader"
+				loader: "style!css"
 			}
 		]
 	}
