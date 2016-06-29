@@ -1,4 +1,5 @@
 import React from 'react';
+import form from '../../styles/form.css';
 
 
 /**
@@ -48,8 +49,8 @@ export default class MyInput extends React.Component{
 				{error_ui}
 				<h4>Enter a location:</h4>
 				<form onSubmit={(...args)=>this.submit(...args)}>
-					<input onChange={()=>this.handleChange()} id="js-location-input" type="text" ref="my_input" />
-					<button type="submit" >Go</button>
+					<input onChange={()=>this.handleChange()} type="text" ref="my_input" />
+					<button type="submit" className={form.button}>Go</button>
 				</form>
 			</div>
 		)

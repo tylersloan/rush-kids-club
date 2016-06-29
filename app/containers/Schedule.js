@@ -7,31 +7,53 @@ import {set_chunk, clear_chunk} from '../actions/index';
 
 class TableRow extends React.Component {
 	render() {
-		const {location} = this.props;
-		const hours = this.props.app_reducer.content; // THE DATA!
+		const {hours} = this.props; // THE DATA!
 		return (
-			<pre>{JSON.stringify(hours)}</pre>
+			<div>{JSON.stringify(hours)}</div>
 		)
 	}
 }
 
 class Schedule extends React.Component {
-	componentWillMount(){
+	constructor(props) {
+		super(props);
+	}
+	componentWillMount() {
 		const {dispatch} = this.props;
 		const location = this.props.params.location;
 		dispatch(set_chunk(location));
+		// console.log('mounting')
+	}
+	componentWillReceiveProps(newProps) {
+		const {dispatch} = this.props;
+		const new_location = newProps.params.location;
+		if(new_location !== this.props.params.location) {
+			dispatch(set_chunk(new_location));
+			// console.log('recieveprops');
+		}
+	}
+	componentWillUnmount() {
+		const {dispatch} = this.props;
+		dispatch(clear_chunk());
+	}
+	renderHours(key) {
+		return (
+			<TableRow key={key} index={key} hours={hours} />
+		)
 	}
 	render() {
-		const {content} = this.props.app_reducer;
+		const hours = this.props.app_reducer.content; // THE DATA!
 		const location = this.props.params.location;
-		let message = <h4>Kids Club Schedule at Gold's Gym {h.titleCase(location)}</h4>;
+		let message = <h4>Kids Club Schedule at Gold's Gym {h.titleCase(location)}</h4>
 
 		if (true) {
 			message = (
 				<div>
 				 	<Navigation loc={location} />
 					<h4>Kids Club Schedule at Gold's Gym {h.titleCase(location)}</h4>
-					<TableRow {...this.props} location={location} />
+					<ul>
+						{hours.map(this.renderHours)}
+					</ul>
 				</div>
 			)
 		} else {

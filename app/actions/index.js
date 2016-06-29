@@ -24,8 +24,6 @@ export function get_chunk(query){
 export function set_chunk(query){
 	return dispatch=>{
 		dispatch(clear_chunk());
-		setTimeout(()=>{
-			dispatch(get_chunk(query));
-		},0)
+		dispatch(get_chunk(query));
 	};
 }
