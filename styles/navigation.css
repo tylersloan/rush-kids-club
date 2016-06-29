@@ -1,0 +1,8 @@
+.nav-item:hover {
+  border-bottom-style: solid;
+  color: white;
+}
+
+.nav-item.is-active {
+  color: #f1eb30;
+}

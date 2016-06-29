@@ -1,0 +1,11 @@
+.icon-status {
+  display: inline-block;
+  width: .55em;
+  height: 1em;
+  vertical-align: middle; }
+  .icon-status.open {
+    /*background: url("../images/check.svg") no-repeat center center;*/
+    background-size: .5em .5em; }
+  .icon-status.closed {
+    /*background: url("../images/x.svg") no-repeat center center;*/
+    background-size: .5em .5em; }

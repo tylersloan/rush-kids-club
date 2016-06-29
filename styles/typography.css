@@ -1,0 +1,28 @@
+p, ul {
+  font-size: 1em;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5em; }
+
+.h1 {
+  border-bottom: .15em solid;
+  font-size: 1.75em;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin: 0 0 20px;
+  padding-bottom: .5em; }
+  @media screen and (max-width: 480px) {
+    h1 {
+      border-bottom: .05em solid;
+      font-size: 1.25em;
+      line-height: 1.25; } }
+
+.h4 {
+  margin: .5em 0 .75em; }
+
+a {
+  border-bottom: 1px dotted;
+  color: whitesmoke;
+  padding-bottom: 2px;
+  text-decoration: none; }
