@@ -1,21 +1,19 @@
-* {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+:global {
+  * {
+    box-sizing: border-box; }
 
-body {
-  background: #1e1e1e;
-  color: white;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px; }
+  body {
+    background: #1e1e1e;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px; }
 
-.wrapper {
-  margin: 5em auto 0 auto;
-  max-width: 30em;
-  padding: 0 3em 3em;
-  width: 95%; }
-  @media screen and (max-width: 480px) {
-    .wrapper {
-      padding: 1em; } }
+  .wrapper {
+    margin: 5em auto 0 auto;
+    max-width: 30em;
+    padding: 0 3em 3em;
+    width: 95%; }
+    @media screen and (max-width: 480px) {
+      .wrapper {
+        padding: 1em; } }
+}
