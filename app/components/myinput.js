@@ -50,7 +50,7 @@ export default class MyInput extends React.Component{
 				<h4>Enter a location:</h4>
 				<form onSubmit={(...args)=>this.submit(...args)}>
 					<input onChange={()=>this.handleChange()} type="text" ref="my_input" />
-					<button type="submit" className={form.button}>Go</button>
+					<button type="submit" className="button">Go</button>
 				</form>
 			</div>
 		)

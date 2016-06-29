@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import styles from '../../styles/global.css';
+import typography from '../../styles/typography.css';
 
 class App extends React.Component{
 	constructor(props){
@@ -11,7 +12,7 @@ class App extends React.Component{
 		return (
 			<div className="app">
 				<header>
-					<h1>Is Gold's Kids Club Open? <span class="icon-status" id="icon-status"></span></h1>
+					<h1 className={typography.h1}>Is Gold's Kids Club Open? <span class="icon-status" id="icon-status"></span></h1>
 				</header>
 				{this.props.children}
 			</div>
